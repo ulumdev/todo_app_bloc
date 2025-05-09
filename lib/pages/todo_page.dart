@@ -81,16 +81,25 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   @override
+  void initState() {
+    context.read<TodoBloc>().add(OnFetchTodos());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Todo List')),
       body: BlocBuilder<TodoBloc, TodoState>(
         builder: (context, state) {
-          if (state is TodoInitial) {
+          if (state.status == TodoStatus.initial) {
             return SizedBox.shrink();
           }
-          if (state is TodoLoading) {
+          if (state.status == TodoStatus.loading) {
             return const Center(child: CircularProgressIndicator());
+          }
+          if (state.status == TodoStatus.failed) {
+            return const Center(child: Text('Failed to load todos'));
           }
           List<Todo> todos = state.todos;
           return ListView.builder(
