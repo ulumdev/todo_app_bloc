@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/bloc/todo_bloc.dart';
+import 'package:todo_app_bloc/pages/todo_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +13,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Todo App - Bloc')),
-        body: const Center(child: Text('Hello World!')),
-      ),
+    return BlocProvider(
+      create: (context) => TodoBloc(),
+      child: MaterialApp(home: TodoPage()),
     );
   }
 }
