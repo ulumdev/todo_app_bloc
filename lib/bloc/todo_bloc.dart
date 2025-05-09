@@ -47,23 +47,23 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
   @override
   void onChange(Change<TodoState> change) {
-    DMethod.log(
-      'onChange: ${change.currentState.status} -> ${change.nextState.status}',
-    );
+    // DMethod.log(
+    //   'onChange: ${change.currentState.status} -> ${change.nextState.status}',
+    // );
     super.onChange(change);
   }
 
   @override
   void onEvent(TodoEvent event) {
-    DMethod.log('onEvent: ${event.toString()}');
+    // DMethod.log('onEvent: ${event.toString()}');
     super.onEvent(event);
   }
 
   @override
   void onTransition(Transition<TodoEvent, TodoState> transition) {
-    DMethod.log(
-      'onTransition: ${transition.currentState.status} -> ${transition.nextState.status}',
-    );
+    // DMethod.log(
+    //   'onTransition: ${transition.currentState.status} -> ${transition.nextState.status}',
+    // );
     super.onTransition(transition);
   }
 }
